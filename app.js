@@ -5,7 +5,11 @@ const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 
-const { createBook, getBooks } = require('./books/books');
+const {
+    createBook,
+    getBooks,
+    getBook
+} = require('./books/books');
 
 app.use(bodyParser.json())
 app.use(
@@ -20,10 +24,12 @@ app.get('/', (req, res) => {
 
 app.get('/books', getBooks);
 
+app.get('/book/:id', getBook);
+
 app.post('/create', createBook);
-  
+
 app.listen(port, () => {
-console.log(`Example app listening on port ${port}`)
+    console.log(`Example app listening on port ${port}`)
 })
 
 
